@@ -1,12 +1,13 @@
 import cv2
 import sys
-import tensorflow as tf
+import joblib
+
 BASE_DIR = "./"
 sys.path.insert(0, (BASE_DIR + 'Hand_Tracker'))
 
 from Hand_Tracker.HandTrackingModule import HandDetector
 hand_detector = HandDetector()
-classifier = tf.keras.models.load_model((BASE_DIR + "Hand_Tracker/Model/Classifier.h5"))
+classifier = joblib.load((BASE_DIR + "Hand_Tracker/Model/Predictor.pkl"))
 
 
 class VideoCamera(object):

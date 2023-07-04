@@ -34,9 +34,11 @@ class HandDetector():
                 for id, lm in enumerate(handLms.landmark):
                     h, w, c = img.shape
                     cx, cy = int(lm.x * w), int(lm.y * h)
-                    print(id, cx, cy)
+                    # print(id, cx, cy)
 
                 self.mpDraw.draw_landmarks(img, handLms, self.mpHands.HAND_CONNECTIONS)
+
+        return results
 
     def collect_landmarks(self, category_of_sample = None, save_file_name:str = "Landmarks.csv", num_samples:int = 1000):
         cap = cv2.VideoCapture(0)
@@ -76,8 +78,8 @@ class HandDetector():
         lms.to_csv(save_file_name)
 
     def get_landmarks(self, img):
-        imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-        results = self.hands.process(imgRGB)
+        # imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        results = self.findHands(img)
         if results.multi_hand_landmarks:
             for handLms in results.multi_hand_landmarks:
                 lm_dict = {}
@@ -87,16 +89,21 @@ class HandDetector():
                 lms = pd.Series(lm_dict)
                 lms = lms.to_numpy()
                 lms = np.expand_dims(lms, axis = 0)
+
+                # for i in range(21):
+                #     lms[:, (2*i)] = lms[:, 2*i] - lms[:, 0]
+                #     lms[:, (2*i)+1] = lms[:, (2*i)+1] - lms[:, 1]
+                # lms = lms[:, 2:]
             return lms
         else:
-            return "No Hand Tracked"
+            return None
 
     def get_results(self, img, classifier):
         lms = self.get_landmarks(img)
         result = "None"
         if not (lms == "No Hand Tracked"):
 
-            pred = np.argmax((classifier.predict(lms)), axis=-1)
+            pred = np.argmax((classifier.predict_proba(lms)), axis=-1)
             if pred == 0:
                 result = "Paper"
             elif pred == 1:
@@ -106,14 +113,16 @@ class HandDetector():
 
         return result
 
+        
+
     def get_result_as_dict(self, img, classifier):
         lms = self.get_landmarks(img)
         predicted_as_dict = {"Paper": 0,"Scissor": 0, "Stone": 0}
         prediction_arr = None
-        if not (lms == "No Hand Tracked"):
-            prediction_arr = classifier.predict(lms)
+        if (lms is not None):
+            prediction_arr = classifier.predict_proba(lms)
             pred = np.argmax((prediction_arr), axis=-1)
-            if(prediction_arr[0][pred] > 0.9):
+            if(prediction_arr[0][pred] > 0.8):
                 if(pred == 2):
                     predicted_as_dict['Stone'] = 1
                 elif(pred == 1):
