@@ -1,11 +1,10 @@
 import mediapipe as mp
-
 import numpy as np
 import pandas as pd
 
 
 class HandDetector():
-    def _init_(self,
+    def __init__(self,
                  maxHands = 2,
                  detectionCon = 0.5,
                  trackCon = 0.5):
@@ -25,7 +24,7 @@ class HandDetector():
 
     def findHands(self, img):
         print(type(img))
-        img=np.asarray(img)
+        img = np.asarray(img)
         imgRGB = img[:, :, ::-1]
         results = self.hands.process(imgRGB)
 

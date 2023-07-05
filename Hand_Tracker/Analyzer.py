@@ -1,14 +1,17 @@
+import sys
 import cv2
-import xgboost
-import sklearn
 import joblib
 import numpy as np
 
 from HandTrackingModule import HandDetector
 
+BASE_DIR = "./"
+sys.path.insert(0, (BASE_DIR + 'Hand_Tracker'))
+
 hand_detector = HandDetector()
 cap = cv2.VideoCapture(0)
-predictor = joblib.load("E:\Coding\Placement Projects\SPS\Hand_Tracker\Model\Predictor (1).pkl")
+predictor = joblib.load((BASE_DIR + "Hand_Tracker/Model/Predictor.pkl"))
+
 MIN_TRACK_CON = 0.9
 
 while True:
