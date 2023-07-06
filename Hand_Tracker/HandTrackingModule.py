@@ -23,19 +23,15 @@ class HandDetector():
         self.mpDraw = mp.solutions.drawing_utils
 
     def findHands(self, img):
-        print(type(img))
-        img = np.asarray(img)
-        imgRGB = img[:, :, ::-1]
-        results = self.hands.process(imgRGB)
+        results = self.hands.process(img)
+        if results.multi_hand_landmarks:
+            for handLms in results.multi_hand_landmarks:
+                for id, lm in enumerate(handLms.landmark):
+                    h, w, c = img.shape
+                    cx, cy = int(lm.x * w), int(lm.y * h)
+                    print(id, cx, cy)
 
-        # if results.multi_hand_landmarks:
-        #     for handLms in results.multi_hand_landmarks:
-        #         for id, lm in enumerate(handLms.landmark):
-        #             h, w, c = img.shape
-        #             cx, cy = int(lm.x * w), int(lm.y * h)
-                    # print(id, cx, cy)
-
-                # self.mpDraw.draw_landmarks(img, handLms, self.mpHands.HAND_CONNECTIONS)
+                self.mpDraw.draw_landmarks(img, handLms, self.mpHands.HAND_CONNECTIONS)
 
         return results
 
@@ -78,7 +74,7 @@ class HandDetector():
 
     def get_landmarks(self, img):
         # imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-        results = self.findHands(img)
+        results = self.hands.process(img)
         if results.multi_hand_landmarks:
             for handLms in results.multi_hand_landmarks:
                 lm_dict = {}

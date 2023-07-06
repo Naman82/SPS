@@ -27,8 +27,7 @@ class VideoCamera(object):
         self.camera.stop()
 
     def get_frame(self):
-        frame = self.camera.get_image()
-        
+        frame = self.camera.get_image()        
         # Convert the captured frame to a PIL Image
         pil_image = Image.frombytes('RGB', frame.get_size(), pygame.image.tostring(frame, 'RGB'))
 
@@ -41,11 +40,11 @@ class VideoCamera(object):
 
     def get_result(self):
         frame = self.camera.get_image()
-        
-        # Convert the captured frame to a PIL Image
-        pil_image = Image.frombytes('RGB', frame.get_size(), pygame.image.tostring(frame, 'RGB'))
+
+        # Convert image to numpy array for processing and prediction
+        image = pygame.surfarray.array3d(frame)
 
         # Perform hand detection and classification
-        predicted_data = hand_detector.get_result_as_dict(pil_image, classifier)
+        predicted_data = hand_detector.get_result_as_dict(image, classifier)
 
         return predicted_data
