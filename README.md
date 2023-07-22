@@ -1,7 +1,6 @@
 # Rochambeau - ML Game
 
-![Rochambeau Logo](https://drive.google.com/file/d/17tXTE45emyYsmdL7iRpiV71gkHCC24Uz/view?usp=sharing)
-
+![Rochambeau Logo](https://user-images.githubusercontent.com/88606859/255312709-2b886e88-ade9-4352-93d5-42ce5fe04755.png)
 Rochambeau is a machine learning-powered game that allows users to play the classic game of "Stone, Paper, Scissors" with a twist. Instead of using traditional input methods, this game leverages the power of computer vision to let players use their hand gestures as the playing tool - Stone, Paper, or Scissors.
 
 ## Table of Contents
