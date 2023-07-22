@@ -74,6 +74,6 @@ python manage.py runserver
 
 
 ## Play Demo Video
-[![Rochambeau Gameplay Video](https://drive.google.com/file/d/17tXTE45emyYsmdL7iRpiV71gkHCC24Uz/view?usp=sharing)](https://drive.google.com/file/d/1Om4vI_Qnx3DLmEaqOr21wq3UyoU79tTr/view?usp=sharing)
+[![Rochambeau Gameplay Video](https://user-images.githubusercontent.com/88606859/255312709-2b886e88-ade9-4352-93d5-42ce5fe04755.png)](https://github.com/Naman82/SPS/issues/2#issue-1816629662)
 
 We hope you enjoy playing Rochambeau as much as we enjoyed building it! If you have any questions or feedback, feel free to contact us at [contact@example.com](mailto:b520031@iiit-bh.ac.in). Happy gaming!
