@@ -38,8 +38,8 @@ To run Rochambeau on your local machine, follow these steps:
 
 1. Clone the repository from GitHub:
 ```bash
-git clone https://github.com/your-username/rochambeau.git
-cd rochambeau
+git clone https://github.com/Naman82/SPS.git
+cd SPS
 ```
 
 2. Set up a virtual environment (optional but recommended):
@@ -76,4 +76,4 @@ python manage.py runserver
 ## Play Demo Video
 [![Rochambeau Gameplay Video](https://user-images.githubusercontent.com/88606859/255312709-2b886e88-ade9-4352-93d5-42ce5fe04755.png)](https://youtu.be/2cmh1YycJHg)
 
-We hope you enjoy playing Rochambeau as much as we enjoyed building it! If you have any questions or feedback, feel free to contact us at [contact@example.com](mailto:b520031@iiit-bh.ac.in). Happy gaming!
+We hope you enjoy playing Rochambeau as much as we enjoyed building it! If you have any questions or feedback, feel free to contact us at [naman@contact.com](mailto:b520031@iiit-bh.ac.in). Happy gaming!
